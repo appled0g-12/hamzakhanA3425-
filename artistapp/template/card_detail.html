@@ -1,0 +1,59 @@
+{% extends 'template/base.html' %}
+
+{% block title %}
+card li
+{% endblock title %}
+
+
+{% block page_content %}
+<div class="co">
+    <p>MAKE: {{ detail.followers.count }}</p>
+    <p> LIKE: {{ detail.likes.count }}</p>
+    {% if request_user.is_authenticated %}
+    <form action="{% url 'follow_unfollow_detail' detail.id %}" method="post">
+        {% csrf_token %}
+        {% if is_following %}
+        <input type="submit" value="Unfollow">
+        {% else %}
+        <input type="submit" value="Follow">
+        {% endif %}
+    </form>
+    {% endif %} 
+    {% if request_user.is_authenticated %}
+    <form action="{% url 'like_dislike_detail' detail.id %}" method="post">
+        {% csrf_token %}
+        {% if is_like %}
+        <input type="submit" value="Unlike">
+        {% else %}
+        <input type="submit" value="Like">
+        {% endif %}
+    </form>
+    {% endif %} 
+
+    <h2>{{ detail.name }}</h2>
+
+    {% if detail.image %}
+
+    <img src="{{ detail.image.url }}" alt="{{ detail.name }}'s image">
+    {% endif %}
+
+
+    <p>Location: {{ detail.town }}</p>
+    <p>Perfect In: {{ detail.perfect_in }}</p>
+    <p>Years of Experience: {{ detail.years_of_experience }}</p>
+    <p>Availability: {{ detail.availability }}</p>
+    <p>Pricing: {{ detail.pricing }}</p>
+    <p>Trained at: {{ detail.trained_at }}</p>
+    <p>Additional Info: {{ detail.additional_text }}</p>
+    {% if detail.image %}
+
+    <img src="{{ detail.image.url }}" alt="{{ detail.name }}'s image">
+    {% endif %}
+
+    <h3>Work Done</h3>
+    {% for work in detail.workdone.all %}
+    <img src="{{ work.workimage.url }}" alt="{{ detail.name }}'s work">
+    {% endfor %}
+
+</div>
+{% endblock page_content %}

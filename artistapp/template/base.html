@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block title %}
+
+    {% endblock title %}
+  </title>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/card.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main-page.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mycard.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/carddetail.css'%}">
+  {% block custom_css %}
+  {% endblock custom_css %}
+
+</head>
+
+<body>
+  {% include 'template/navbar.html' %}
+
+  {% block page_content %}
+  
+  {% endblock page_content %}
+
+
+  {% block custom_js %}
+  {% endblock custom_js %}
+  
+  <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".swiper-container", {
+      effect: "coverflow",
+      grabCursor: false,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate:-20,
+        stretch: 0.4,
+        depth:100,
+        modifier: 2,
+        slideShadows: true,
+      },
+    });
+  
+  </script> -->
+</body>
+
+</html>

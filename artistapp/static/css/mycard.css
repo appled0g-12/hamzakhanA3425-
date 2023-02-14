@@ -1,0 +1,14 @@
+.card-box{
+    margin: auto;
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    border: 2px solid var(--color-two);
+    border-radius: 4px;
+    background-color:white;
+    box-shadow: 0 0 7px var(--color-two);
+    width: 97%;
+    height:auto;
+}

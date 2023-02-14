@@ -1,0 +1,70 @@
+:root{
+    --color-one-:#1A120B;
+    --color-two-:#3C2A21;
+    --color-three-:#D5CEA3;
+    --color-four-:#E5E5CB;
+}
+
+.navbar{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left:-0.2px;
+    width: 100%;
+    height: 5rem;
+    align-items: center;
+    justify-content: space-between;
+    margin:0;
+    z-index: 9999;
+    background-color: #E5E5CB;
+    color: #1A120B;
+    border-bottom: 5px solid #D5CEA3;
+}
+
+.nav-left img{
+    width:5.5rem;
+    height: 4.5rem;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 3px;
+    object-fit:cover;
+    background-color: var(--navbar-color);
+    
+}
+
+.nav-left {
+    padding: 0px;
+    margin: 0;
+    width:5.5rem;
+    height: 5rem;
+    background-color: var(--navbar-color);
+}
+
+.nav-right{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: var(--navbar-color);
+}
+
+.nav-right a{
+    margin-right: 1rem;
+    margin-left: 1rem;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1A120B;
+    cursor: default;
+}
+
+.nav-right i{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#hello-msg{
+    font-weight: 400;
+    font-size: 20px;
+    cursor: default;
+    color: #1A120B;
+}

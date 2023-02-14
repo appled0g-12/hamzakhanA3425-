@@ -1,0 +1,59 @@
+{% extends 'template/base.html' %}
+
+{% block title %}
+ALL CARDS
+{% endblock title %}
+
+{% block page_content %}
+
+<div class="swiper-wrapper">
+  {% for i in all_cards %}
+  <div class="swiper-slide">
+    <p>MAKE: {{ i.followers.count }}</p>
+    <p> LIKE: {{ i.likes.count }}</p>
+    <div class="proimage">
+      {% if i.image %}
+      <img src="{{ i.image.url }}" alt="">
+      {% endif %}
+    </div>
+    <div class="cname">
+      {{ i.name }}
+    </div>
+  
+    <div class="town">
+      {{ i.town }}
+    </div>
+    <div class="specilized">
+      {{ i.perfect_in }}
+    </div>
+    <div class="exp">
+      {{ i.years_of_experience }}
+    </div>
+
+
+    <div class="available">
+      {{ i.availability }}
+    </div>
+    <div class="price">
+      {{ i.pricing }}
+    </div>
+    <div class="train">
+      {{ i.trained_at }}
+    </div>
+    <div class="add-text">
+      {{ i.additional_text }}
+    </div>
+    <div class="work-image">
+      {% for image in i.workdone.all %}
+      <img src="{{ image.workimage.url }}" alt="">
+      {% endfor %}
+    </div>
+    <div class="link">
+      <a href="{% url 'card_detail' detail_id=i.id %}">link</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock page_content %}

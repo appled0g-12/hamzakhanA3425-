@@ -1,0 +1,46 @@
+{% load static %}
+<div class="navbar">
+    <ul class="nav-left">
+        <img src="{% static 'img/logonav.png' %}" alt="">
+    </ul>
+    <ul class="nav-mid"></ul>
+    <ul class="nav-right">
+
+        {% if user.is_authenticated %}
+
+            <span id="hello-msg">Hi, {{ request.user.username.title }}</span>
+
+                <!-- {% if not user.card.exists %}
+                    <span><a href="/createcard" id="create" onclick="f1()" class="create"><i class="fa fa-plus">CreateCard</i></a></span>
+                {% endif %} -->
+
+                {% if not request.path == "/" %}
+                <span><a href="/" class="create">Home</a></span>
+                {% endif %}
+                
+                
+                <!-- {% for detail in all_cards %}
+                    
+                    <span><a href="{% url 'card_detail' detail_id=detail.id  %}" class="create"><i class="fas fa-sign-in-alt">mycard</i></a></span>
+                    
+                    {% endfor %} -->
+                    
+                    {% with card=user.card.first %}
+                    {% if card %}
+                    <a href="{% url 'my_card' %}">My Card</a>
+                    {% else %}
+                    <a href="{% url 'createcard' %}">Create Card</a>
+                    {% endif %}
+                    {% endwith %}
+                    
+                    
+                    <span><a href="{% url 'signout' %}">Sign-Out</a></span>
+            {% else %}
+            
+                <span><a href="/" class="create">home</a></span>
+                <span><a href="/signin" class="create">Sign-In</a></span>
+        
+        {% endif %}
+
+    </ul>
+</div>

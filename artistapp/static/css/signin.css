@@ -1,0 +1,107 @@
+
+
+.main-container{
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.sign-container {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+ position: relative;
+ padding: 14px 18px;
+ border-radius: 4px;
+ background-color: rgb(255, 255, 255);
+ border: 1px soild white;
+}
+
+img{
+    
+  object-fit: contain;
+  width: 10rem;
+  height: 5rem;
+}
+
+.logo{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.2
+}
+
+.create-btn{
+  width: 12%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 5px 0;
+  margin-bottom: 4rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+.create-btn a{
+  color: white;
+  text-decoration: none;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 2rem;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 2rem 0;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+input:focus{
+  outline: none;
+  border: 1px solid rgb(181, 208, 254);
+  background-color: rgb(232, 240, 254);
+}
+
+.alert{
+  background-color: rgba(236, 229, 229, 0.9); /* Red with 80% opacity */
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  border: solid 1px  #06362d8c;
+  font-size: 14px;
+  font-weight:lighter;;
+  padding: 0.5rem;
+  margin-top:1rem ;
+  margin-bottom: 5px;
+  width: 60%;
+}
+
+#text{
+  width: 50%;
+}

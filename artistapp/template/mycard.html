@@ -1,0 +1,37 @@
+{% extends 'template/base.html' %}
+
+{% block title %}
+card li
+{% endblock title %}
+
+
+{% block page_content %}
+
+<div class="card-box">
+    {{ card.name }}
+    {{ card.town }}
+    {{ card.perfect_in }}
+    {{ card.years_of_experience }}
+    {{ card.availability }}
+    {{ card.pricing }}
+    {{ card.trained_at }}
+    {{ card.additional_text }}
+    <div class="image">
+        {% for image in card.workdone.all %}
+        <img src="{{ image.workimage.url }}" alt="">
+        {% endfor %}
+    </div>
+    <button onclick="copyToClipboard()">copy link
+    </button>
+    <a href="{% url 'detail_view' card.id %}"id="myLink">link</a>
+
+</div>
+
+<script>
+    function copyToClipboard() {
+        var link = document.getElementById("myLink").href;
+        navigator.clipboard.writeText(link);
+        
+    }
+</script>
+{% endblock page_content %}

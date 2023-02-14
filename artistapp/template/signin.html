@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'css/signin.css'%}">
+
+<head>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="sign-container">
+      <div class="logo">
+        <h1>Login Page</h1>
+        <img src="{% static 'img/logosign.png' %}" alt="">
+      </div>
+      <form action="signin" id="myform" method="post">
+        <div class="create-btn"><a href="/createsignin">Create</a></div>
+        {% csrf_token %}
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" id="msg" onload="f1()" {% if message.tags %}>
+          {{ message }}
+        </div {% endif %}>
+        {% endfor %}
+
+        <input type="text" id="username" name="username" placeholder="Username"
+          onkeydown="moveToNext(event, 'password')">
+        <input type="password" id="password" name="password" placeholder="Password">
+        <input type="submit" value="Submit">
+    </div>
+    </form>
+  </div>
+  </div>
+</body>
+
+
+<script>
+
+  function moveToNext(event, nextInputId) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById(nextInputId).focus();
+    }
+  }
+
+
+  function f1() {
+    document.getElementById("msg").style.visibility = "hidden";
+    document.getElementById("msg").style.display = "none";
+  }
+  setTimeout("f1()", 2000);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("myform");
+    var errorMessages = document.querySelectorAll(".alert");
+
+    document.addEventListener("click", function (event) {
+      if (!form.contains(event.target)) {
+        errorMessages.forEach(function (el) {
+          el.style.display = "none";
+        });
+      }
+    });
+  });
+
+
+</script>
+
+</html>

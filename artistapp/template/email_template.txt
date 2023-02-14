@@ -1,0 +1,20 @@
+Dear {{ username }},
+
+We are pleased to welcome you to Artistmake!
+We have created a user account for you to access all the amazing features and benefits of our platform. 
+
+Your login details are as follows:
+
+Username: {{ username }}
+Password: {{ password }}
+
+Please keep this information confidential and safe.
+
+We look forward to supporting you in your artistic journey.
+Thank you for choosing Artistmake.
+
+Best regards,
+The Artistmake Team.
+
+
+

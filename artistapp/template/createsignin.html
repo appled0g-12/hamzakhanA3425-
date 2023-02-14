@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'css/createsign.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/messages.css' %}">
+</head>
+
+<head>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="container">
+      <div class="head">
+        <h1>Registration Page</h1>
+        <img src="{% static 'img/logo.png'  %}" alt="">
+      </div>
+      <form name="createform" id="myform" action="createsignin" method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        {{form.username}}
+        {% if form.username.errors %}
+        <div class="invalid-feedback error-msg">
+          {% for error in form.username.errors %}
+          {{ error }}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <br>
+        <label for="email">Email:</label>
+        {{form.email}}
+        {% if form.email.errors %}
+        <div class="invalid-feedback error-msg">
+          {% for error in form.email.errors %}
+          {{ error }} {{ message }}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <br>
+        <label for="password">Password:</label>
+        {{form.password1}}
+        {% if form.password1.errors %}
+        <div class="invalid-feedback error-msg">
+          {% for error in form.password1.errors %}
+          {{ error }}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <br>
+        <label for="password_confirm">Confirm Password:</label>
+        {{ form.password2 }}
+        
+        <div class="error-box">
+            {% for error in form.password2.errors %}
+                <div class="error-msg"> Alert!  {{ error }} </div>
+            {% endfor %}
+        </div>
+    
+        <br><br>
+        <input type="submit" id="create" value="CREATE">
+      </form>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+
+  var form_fields = document.getElementsByTagName('input')
+  form_fields[1].placeholder = 'Username...';
+  form_fields[2].placeholder = 'Email...';
+  form_fields[3].placeholder = 'Enter password....';
+  form_fields[4].placeholder = 'Re-enter Password...';
+
+  for (var field in form_fields) {
+    form_fields[field].className += 'form-control'
+  }
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("myform");
+    var errorMessages = document.querySelectorAll(".error-box");
+
+    document.addEventListener("click", function (event) {
+      if (!form.contains(event.target)) {
+        errorMessages.forEach(function (el) {
+          el.style.display = "none";
+        });
+      }
+    });
+  });
+
+
+
+
+</script>
+
+</html>

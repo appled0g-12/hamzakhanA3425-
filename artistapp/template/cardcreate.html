@@ -1,0 +1,180 @@
+{% extends 'template/base.html' %}
+
+{% block title %}
+card create
+{% endblock title %}
+
+{% block page_content %}
+<div class="card-head">
+    <p id="h1">Make Your Artist Card</p>
+</div>
+<div class="main-content">
+    <div class="card">
+        {% if user.card.exists %}
+        <p>You have already created a card. Please choose another option.</p>
+        {% else %}
+        <form id="cardform" method="post" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <div class="top-card">
+                <div class="pro-img">
+                    <div class="img-container">
+
+                        <label for="image-input" class="btn" id="profile-label">Add Photo</label>
+                        <input type="file" id="image-input" name="image" style="visibility: hidden;">
+                        <img id="preview1" src="{{ object.image.url }}" alt="{{ detail.name }}">
+                        <!-- <input type="file"  name="image" style="visibility: hidden;" id="image-input"> -->
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail-container">
+                        <input type="text" id="name" name="name" placeholder="Card Name"
+                            onkeydown="moveToNext(event, 'town')">
+                        <br>
+                        <input type="text" id="town" name="town" placeholder="Town Name"
+                            onkeydown="moveToNext(event, 'perfect_in')"><br>
+                        <input type="text" id="perfect_in" name="perfect_in" placeholder="Specialized"
+                            onkeydown="moveToNext(event, 'years_of_experience')"><br>
+                        <input type="text" id="years_of_experience" name="years_of_experience" placeholder="Experience"
+                            onkeydown="moveToNext(event, 'trained_at')"><br>
+                        <input type="text" id="trained_at" name="trained_at" placeholder="Trained "
+                            onkeypress="return checkEnter(event)"><br>
+                    </div>
+                </div>
+            </div>
+            <div class="top-2">
+                <input type="text" id="availability" name="availability" placeholder="Available(Day or Time)"
+                    onkeydown="moveToNext(event, 'pricing')"><br>
+                <input type="text" id="pricing" name="pricing" placeholder="Price"
+                    onkeypress="return checkEnter(event)">
+            </div>
+
+            <div class="add">
+                <label for="fileInput" id="addwork" class="btn" onkeypress="return checkEnter(event)">➕ Add Work</label>
+            </div>
+            <div class="work_done">
+                <div id="preview">
+                    <input type="file" id="fileInput" name="workdone" placeholder="name" style="visibility: hidden;"
+                        multiple>
+
+                </div>
+            </div>
+
+            <label for="" id="addtext">➕ Additional Text</label>
+            <textarea name="additional_text" id="textarea" contenteditable="true">
+
+                </textarea>
+
+            <div class="btns">
+                <input type="submit" value="CREATE CARD">
+            </div>
+        </form>
+        {% endif %}
+    </div>
+    <div class="info">
+        <div class="fstrow">
+            <div class="image-info">
+                <p>Keep Your Photo Simple.You can also put any Sign or Mark that make image in the Customer.If You don't
+                    feel to put Your Photo then keep it blank.
+                </p>
+            </div>
+            <div class="fst-col">
+                <div class="fst-r1">
+                    <div class="firstrow">
+                        <div class="cardname">
+                            <p><strong>CARD NAME</strong><br><br>Your name should be Unique.Besides Your Name you can
+                                also put any other name
+                                you wished</p>
+                        </div>
+                        <div class="townname">
+                            <p><strong>TOWN NAME</strong><br><br> Your Nearest LandMark or Your Cityname</p>
+                        </div>
+                        <div class="Specialized">
+                            <p><strong>SPECIALIZED</strong><br><br>Your best in ? Specify Exact Skills Even Little can
+                                do the job</p>
+                        </div>
+                    </div>
+                    <div class="firstrow">
+                        <div class="Experience">
+                            <p><strong>EXPERIENCE</strong><br><br>From When you are in this Field.On Indiviual level or
+                                profesional level</p>
+                        </div>
+                        <div class="Trained-At">
+                            <p><strong>TRAINED AT</strong><br><br>You can mention your Academy name, any studio name or
+                                Self-trained at Home</p>
+                        </div>
+                        <div class="Price">
+                            <p><strong>PRICE</strong><br><br>Range of Price that you wish to charge .Don't put exact
+                                Price otherwise at location customer may argue</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Availability">
+                    <p><strong>AVAILABILITY</strong><br><br>On what day you can Go.When will you be Free or How regular
+                        You can Work</p>
+                </div>
+            </div>
+        </div>
+        <div class="workdes">
+            <p> <strong>ADD WORK</strong> <br><br> You can ADD your Past works here. <br> Please Upload the Final result
+                of every work.Upload as many as possible,So the customer can have a Look on your Skills. <br> Don't
+                Upload image from Internet.</p>
+        </div>
+        <div class="workdes">
+            <p> <strong>ADDITIONAL TEXT</strong> <br><br> Here you can add some additional text or details regrading
+                your work procedure. <br> You can also write your artist journey like where you have done work. <br>
+                Other thoughts you might see sutiable for your card image. </p>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+
+
+    function checkEnter(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        }
+    }
+
+
+    function moveToNext(event, nextInputId) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById(nextInputId).focus();
+        }
+    }
+
+    var fileInput = document.getElementById("fileInput");
+    var preview = document.getElementById("preview");
+
+    fileInput.addEventListener("change", function () {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var img = document.createElement("img");
+            img.classList.add("obj");
+            img.file = file;
+            preview.appendChild(img);
+            var reader = new FileReader();
+            reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; })(img);
+            reader.readAsDataURL(file);
+        }
+    });
+
+
+
+    var imageInput = document.getElementById("image-input");
+    var previewImage = document.getElementById("preview1");
+
+    imageInput.addEventListener("change", function (event) {
+        if (event.target.files.length == 0) {
+            return;
+        }
+        var imgurl = URL.createObjectURL(event.target.files[0]);
+        previewImage.setAttribute("src", imgurl);
+    });
+
+</script>
+
+{% endblock page_content %}
